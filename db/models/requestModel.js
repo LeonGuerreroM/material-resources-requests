@@ -73,8 +73,9 @@ const requestSchema = {
 }
 
 class Request extends Model {
-  static associate(){
-
+  static associate(models){
+    this.belongsTo(models.User, {as: 'users'});
+    this.belongsTo(models.Product, {as: 'products'});
   }
 
   static config(sequelize){

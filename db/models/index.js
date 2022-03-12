@@ -10,6 +10,13 @@ function setupModels(sequelize){
   User.init(userSchema, User.config(sequelize));
   Product.init(productSchema, Product.config(sequelize));
   Request.init(requestSchema, Request.config(sequelize));
+
+  UserCategory.associate(sequelize.models);
+  Department.associate(sequelize.models);
+  User.associate(sequelize.models);
+  Product.associate(sequelize.models);
+  Request.associate(sequelize.models);
+
 }
 
 module.exports = setupModels;

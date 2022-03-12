@@ -17,8 +17,11 @@ const departmentSchema = {
 }
 
 class Department extends Model {
-  static associate(){
-
+  static associate(models){
+    this.hasMany(models.User, {
+      as: 'users',
+      foreignKey: 'departmentId'
+    });
   }
 
   static config(sequelize){
