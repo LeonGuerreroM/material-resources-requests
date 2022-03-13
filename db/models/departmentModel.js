@@ -1,5 +1,4 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const setupModels = require('.');
 
 const DEPARTMENT_TABLE = 'cat_departamentos';
 

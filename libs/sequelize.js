@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize');
-const { default: ModelManager } = require('sequelize/types/model-manager');
+const setupModels = require('./../db/models');
 
 const { config } = require('../config/config.js');
 
