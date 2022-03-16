@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { USERCATEGORY_TABLE } = require('./userCategoryModel.js')
-const { DEPARTMENT_TABLE } = require('./departmentModel.js')
+const { USERCATEGORY_TABLE } = require('./userCategoryModel');
+const { DEPARTMENT_TABLE } = require('./departmentModel');
 
 const USER_TABLE = 'tbl_usuario';
 
@@ -31,7 +31,7 @@ const userSchema = {
     onDelete: 'SET NULL'
   },
   departmentId: {
-    field: 'user_category_id',
+    field: 'department_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
@@ -49,8 +49,8 @@ const userSchema = {
 
 class User extends Model {
   static associate(models){
-    this.belongsTo(models.UserCategory, { as: 'userCategories' });
-    this.belongsTo(models.Department, { as: 'departments' });
+    this.belongsTo(models.UserCategory, { as: 'userCategory' });
+    this.belongsTo(models.Department, { as: 'department' });
     this.hasMany(models.Request, {
       as: 'requests',
       foreignKey: 'userId'
@@ -68,4 +68,3 @@ class User extends Model {
 }
 
 module.exports = { USER_TABLE, userSchema, User }
-

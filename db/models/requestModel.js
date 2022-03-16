@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-const { PRODUCTS_TABLE } = require('./productModel.js');
-const { USER_TABLE } = require('./userModel.js');
+const { PRODUCT_TABLE } = require('./productModel');
+const { USER_TABLE } = require('./userModel');
 
 const REQUEST_TABLE = 'tbl_solicitudes';
 
@@ -16,7 +16,7 @@ const requestSchema = {
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: PRODUCTS_TABLE,
+      model: PRODUCT_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
@@ -74,8 +74,8 @@ const requestSchema = {
 
 class Request extends Model {
   static associate(models){
-    this.belongsTo(models.User, {as: 'users'});
-    this.belongsTo(models.Product, {as: 'products'});
+    this.belongsTo(models.User, {as: 'user'});
+    this.belongsTo(models.Product, {as: 'product'});
   }
 
   static config(sequelize){

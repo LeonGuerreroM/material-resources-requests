@@ -1,8 +1,8 @@
-const { UserCategory, userCategorySchema } =  require('./userCategoryModel.js');
-const { Department, departmentSchema } =  require('./departmentModel.js');
-const { User, userSchema } =  require('./userModel.js');
-const { Product, productSchema } =  require('./productModel.js');
-const { Request, requestSchema } =  require('./requestModel.js');
+const { UserCategory, userCategorySchema } =  require('./userCategoryModel');
+const { Department, departmentSchema } =  require('./departmentModel');
+const { User, userSchema } =  require('./userModel');
+const { Product, productSchema } =  require('./productModel');
+const { Request, requestSchema } =  require('./requestModel');
 
 function setupModels(sequelize){
   UserCategory.init(userCategorySchema, UserCategory.config(sequelize));
