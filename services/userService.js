@@ -1,4 +1,5 @@
 const { models } = require('../libs/sequelize');
+const boom = require('@hapi/boom'); //eslint-disable-line
 
 class UserServices{
 
@@ -15,8 +16,14 @@ class UserServices{
   }
 
   async create(data){
-    const newUser = await models.User.create(data);
-    return newUser;
+    const { username } = data;
+    const foundUser = await models.User.findOne({ where: {username} });
+    if(foundUser){
+      throw boom.badData('username already registered');
+    }else{
+      const newUser = await models.User.create(data);
+      return newUser;
+    }
   }
 
   async update(id, changes){
