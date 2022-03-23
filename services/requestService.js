@@ -1,11 +1,12 @@
 const { models } = require('../libs/sequelize');
 const { Op } = require('sequelize');
-const { options } = require('pg/lib/defaults');
+const boom = require('@hapi/boom');
 
+const thing = "request";
 class RequestServices{
   constructor() {}
 
-  async find(query){
+  async find(query){ //eslint-disable-line
     const options = {
       //include: ['category'],
       where: {}
@@ -28,6 +29,9 @@ class RequestServices{
 
   async findOne(id){
     const element = await models.Request.findByPk(id);
+    if(!element){
+      throw boom.notFound('not founded ' + thing);
+    }
     return element;
   }
 

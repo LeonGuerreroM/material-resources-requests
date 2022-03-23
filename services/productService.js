@@ -1,21 +1,31 @@
 const { models } = require('../libs/sequelize');
+const boom = require('@hapi/boom')
 
 class ProductServices{
   constructor() {}
 
-  async find(query){
+  async find(query){ //eslint-disable-line
     const products = await models.Product.findAll();
     return products;
   }
 
   async findOne(id){
     const product = await models.Product.findByPk(id);
+    if(!product){
+      throw boom.notFound('not founded product');
+    }
     return product;
   }
 
   async create(data){
-    const newProduct = await models.Product.create(data);
-    return newProduct;
+    const claveCUCoP = data.claveCUCoP;
+    const requestedProduct = await models.Product.findOne({ where: { claveCUCoP } });
+    if(!requestedProduct){
+      const newProduct = await models.Product.create(data);
+      return newProduct;
+    }else{
+      throw boom.badData('product already registered');
+    }
   }
 
   async update(id, data){
