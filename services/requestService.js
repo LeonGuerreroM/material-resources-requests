@@ -45,9 +45,13 @@ class RequestServices{
 
   async update(id, data){
     const element = await this.findOne(id);
+    const prevValidationStatus = element.validated;
     if(data.validated){
       const dt = new Date();
       data.validatedAt = dt
+    }
+    if(data.validated==false && prevValidationStatus==true){
+      data.validatedAt = null;
     }
     if(data.processed != null){
       const dt = new Date();
