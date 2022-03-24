@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 
 const id = Joi.number().integer();
 const claveCUCoP = Joi.string().length(8).alphanum();
@@ -14,7 +14,7 @@ const createProductSchema = Joi.object({
   claveCUCoP: claveCUCoP.required(),
   partida: partida.required(),
   name: name.required(),
-  unit: unit.required
+  unit: unit.required(),
 });
 
 const updateProductSchema = Joi.object({

@@ -8,7 +8,7 @@ class RequestServices{
 
   async find(query){ //eslint-disable-line
     const options = {
-      //include: ['category'],
+      include: ['user', 'product'],
       where: {}
     }
 
@@ -28,7 +28,9 @@ class RequestServices{
   }
 
   async findOne(id){
-    const element = await models.Request.findByPk(id);
+    const element = await models.Request.findByPk(id, {
+      include: ['user', 'product']
+    });
     if(!element){
       throw boom.notFound('not founded ' + thing);
     }

@@ -6,12 +6,18 @@ class UserServices{
   constructor(){}
 
   async find(){
-    const users = await models.User.findAll();
+    const users = await models.User.findAll({
+      include: ['userCategory', 'department']
+      //include: ['userCategory', 'department', 'requests']
+    });
     return users;
   }
 
   async findOne(id){
-    const user = await models.User.findByPk(id);
+    const user = await models.User.findByPk(id, {
+      include: ['userCategory', 'department']
+      //include: ['userCategory', 'department', 'requests']
+    });
     if(!user){
       throw boom.notFound('not founded user');
     }

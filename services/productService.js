@@ -5,12 +5,16 @@ class ProductServices{
   constructor() {}
 
   async find(query){ //eslint-disable-line
-    const products = await models.Product.findAll();
+    const products = await models.Product.findAll({
+      //include: ['requests']
+    });
     return products;
   }
 
   async findOne(id){
-    const product = await models.Product.findByPk(id);
+    const product = await models.Product.findByPk(id, {
+      //include: ['requests']
+    });
     if(!product){
       throw boom.notFound('not founded product');
     }
