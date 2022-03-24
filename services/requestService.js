@@ -2,6 +2,7 @@ const { models } = require('../libs/sequelize');
 const { Op } = require('sequelize');
 const boom = require('@hapi/boom');
 
+
 const thing = "request";
 class RequestServices{
   constructor() {}
@@ -38,15 +39,20 @@ class RequestServices{
   }
 
   async create(data){
-    if(data.validated){
-      console.log('trajo '+ data.validated);
-    }
     const newElement = await models.Request.create(data);
     return newElement;
   }
 
   async update(id, data){
     const element = await this.findOne(id);
+    if(data.validated){
+      const dt = new Date();
+      data.validatedAt = dt
+    }
+    if(data.processed != null){
+      const dt = new Date();
+      data.processedAt = dt
+    }
     const updatedElement = await element.update(data);
     return updatedElement;
   }

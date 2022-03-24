@@ -1,5 +1,6 @@
 const { models } = require('../libs/sequelize');
-const boom = require('@hapi/boom'); //eslint-disable-line
+const boom = require('@hapi/boom');
+const bcrypt = require('bcrypt');
 
 class UserServices{
 
@@ -21,6 +22,7 @@ class UserServices{
     if(!user){
       throw boom.notFound('not founded user');
     }
+    delete user.dataValues.password;
     return user;
   }
 
@@ -30,7 +32,13 @@ class UserServices{
     if(foundUser){
       throw boom.badData('username already registered');
     }else{
-      const newUser = await models.User.create(data);
+      const hash = await bcrypt.hash(data.password, 10);
+      const secureData = {
+        ...data,
+        password: hash
+      }
+      const newUser = await models.User.create(secureData);
+      delete newUser.dataValues.password;
       return newUser;
     }
   }
@@ -38,6 +46,7 @@ class UserServices{
   async update(id, changes){
     const searchedUser = await this.findOne(id);
     const updatedUser = await searchedUser.update(changes);
+    delete updatedUser.dataValues.password;
     return updatedUser;
   }
 

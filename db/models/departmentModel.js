@@ -1,4 +1,4 @@
-const { Model, DataTypes, Sequelize } = require('sequelize');
+const { Model, DataTypes, Sequelize } = require('sequelize'); //eslint-disable-line
 
 const DEPARTMENT_TABLE = 'cat_departamentos';
 
