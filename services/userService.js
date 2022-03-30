@@ -26,6 +26,11 @@ class UserServices{
     return user;
   }
 
+  async findByUsername(username){
+    const user =  await models.User.findOne({ where: { username } });
+    return user;
+  }
+
   async create(data){
     const { username } = data;
     const foundUser = await models.User.findOne({ where: {username} });
