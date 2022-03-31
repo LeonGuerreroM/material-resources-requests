@@ -61,11 +61,9 @@ router.post('/',
 router.patch('/',
   passport.authenticate('jwt', {session:false}),
   checkRoles(2, 3, 4),
-  //validationHandler(getUserSchema, 'params'),
   validationHandler(updateUserSchema, 'body'),
   async(req, res, next) => {
     try{
-      //const { id } = req.params;
       const subCont = req.user;
       const body = req.body;
       const user = await service.update(subCont.sub, body);

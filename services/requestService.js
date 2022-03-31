@@ -52,7 +52,16 @@ class RequestServices{
     return newElement;
   }
 
-  async update(id, data){
+  async update(id, data, userId){
+    const element = await this.findOne(id);
+    if(element.userId!=userId){
+      throw boom.forbidden('unaccesible request');
+    }
+    const updatedElement = await element.update(data);
+    return updatedElement;
+  }
+
+  async validateOrProcess(id, data){
     const element = await this.findOne(id);
     const prevValidationStatus = element.validated;
     if(data.validated){

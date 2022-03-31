@@ -6,9 +6,11 @@ const {
   createRequestSchema,
   updateRequestSchema,
   queryRequestSchema,
+  validateOrProcessSchema
 } = require('../utils/schemas/requestSchema');
 const passport = require('passport');
 const checkRoles = require('../utils/middlewares/authHandler');
+
 
 const router = express.Router();
 const service = new RequestServices();
@@ -16,8 +18,8 @@ const service = new RequestServices();
 const thing = "request";
 
 router.get('/',
-  passport.authenticate('jwt', {session:false}),
-  checkRoles(2, 3, 4),
+  //passport.authenticate('jwt', {session:false}),
+  //checkRoles(2, 3, 4),
   validationHandler(queryRequestSchema, 'query'),
   async(req, res, next) => {
     try{
@@ -65,6 +67,8 @@ router.post('/',
   async(req, res, next) => {
     try{
       const body = req.body;
+      const user = req.user;
+      body.userId = user.sub;
       const newElement = await service.create(body);
       res.json({
         message: thing + ' created',
@@ -76,16 +80,38 @@ router.post('/',
   }
 );
 
-router.patch('/:id',
-  passport.authenticate('jwt', {session:false}),
-  checkRoles(2, 3, 4),
+router.patch('/validateOrProcess/:id',
+  //passport.authenticate('jwt', {session:false}),
+  //checkRoles(2, 3),
   validationHandler(getRequestSchema, 'params'),
-  validationHandler(updateRequestSchema, 'body'),
+  validationHandler(validateOrProcessSchema, 'body'),
   async(req, res, next) => {
     try{
       const { id } = req.params;
       const body = req.body;
-      const updatedElement = await service.update(id, body);
+      const updatedElement = await service.validateOrProcess(id, body);
+      res.json({
+        message: thing + ' updated',
+        data: updatedElement
+      })
+    }catch(error){
+      next(error);
+    }
+  }
+);
+
+router.patch('/:id',
+  passport.authenticate('jwt', {session: false}),
+  checkRoles(4),
+  validationHandler(getRequestSchema, 'params'),
+  validationHandler(updateRequestSchema, 'body'),
+  async (req, res, next) => {
+    try{
+      const { id } = req.params;
+      const body = req.body;
+      const user = req.user;
+      const userId = user.sub;
+      const updatedElement = await service.update(id, body, userId);
       res.json({
         message: thing + ' updated',
         data: updatedElement
