@@ -55,7 +55,7 @@ class RequestServices{
   async update(id, data, userId){
     const element = await this.findOne(id);
     if(element.userId!=userId){
-      throw boom.forbidden('unaccesible request');
+      throw boom.forbidden('unreachable request');
     }
     const updatedElement = await element.update(data);
     return updatedElement;
@@ -79,8 +79,11 @@ class RequestServices{
     return updatedElement;
   }
 
-  async delete(id){
+  async delete(id, userId){
     const element = await this.findOne(id);
+    if(element.userId != userId){
+      throw boom.forbidden('unreachable content');
+    }
     await element.destroy();
     return { confirmation: true };
   }

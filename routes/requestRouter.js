@@ -18,8 +18,8 @@ const service = new RequestServices();
 const thing = "request";
 
 router.get('/',
-  //passport.authenticate('jwt', {session:false}),
-  //checkRoles(2, 3, 4),
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(2, 3),
   validationHandler(queryRequestSchema, 'query'),
   async(req, res, next) => {
     try{
@@ -81,8 +81,8 @@ router.post('/',
 );
 
 router.patch('/validateOrProcess/:id',
-  //passport.authenticate('jwt', {session:false}),
-  //checkRoles(2, 3),
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(2, 3),
   validationHandler(getRequestSchema, 'params'),
   validationHandler(validateOrProcessSchema, 'body'),
   async(req, res, next) => {
@@ -129,7 +129,9 @@ router.delete('/:id',
   async(req, res, next) => {
     try{
       const { id } = req.params;
-      const confirmation = await service.delete(id);
+      const user = req.user;
+      const userId = user.sub;
+      const confirmation = await service.delete(id, userId);
       res.json({
         message: thing + ' deleted',
         status: confirmation
