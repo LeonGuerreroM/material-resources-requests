@@ -28,6 +28,9 @@ class UserServices{
 
   async findByUsername(username){
     const user =  await models.User.findOne({ where: { username } });
+    if(!user){
+      throw boom.notFound('not founded user');
+    }
     return user;
   }
 

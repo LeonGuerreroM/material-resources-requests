@@ -25,14 +25,14 @@ router.get('/',
   }
 );
 
-router.get('/:id',
+router.get('/:username',
   passport.authenticate('jwt', {session:false}),
   checkRoles(1, 2, 3, 4),
   validationHandler(getUserSchema, 'params'),
   async(req, res, next) => {
     try{
-      const { id } = req.params;
-      const user = await service.findOne(id);
+      const { username } = req.params;
+      const user = await service.findByUsername(username);
       res.json(user);
     } catch(error) {
       next(error);

@@ -1,6 +1,5 @@
 const Joi = require('@hapi/joi');
 
-const id = Joi.number().integer();
 const username = Joi.string().min(3).max(50);
 const password = Joi.string().min(8);
 const userCategoryId = Joi.number().integer();
@@ -8,7 +7,7 @@ const departmentId = Joi.number().integer();
 const area = Joi.string();
 
 const getUserSchema = Joi.object({
-  id: id.required()
+  username: username.required()
 });
 
 const createUserSchema = Joi.object({
