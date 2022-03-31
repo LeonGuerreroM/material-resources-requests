@@ -5,21 +5,29 @@ const {
   getProductSchema,
   createProductSchema,
   updateProductSchema
-} = require('../utils/schemas/productSchema')
+} = require('../utils/schemas/productSchema');
+const passport = require('passport');
+const checkRoles = require('../utils/middlewares/authHandler');
 
 const router = express.Router();
 const service = new ProductServices();
 
-router.get('/', async(req, res, next) => {
-  try{
-    const products = await service.find(req.query);
-    res.json(products);
-  }catch(error){
-    next(error);
+router.get('/',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
+  async(req, res, next) => {
+    try{
+      const products = await service.find(req.query);
+      res.json(products);
+    }catch(error){
+      next(error);
+    }
   }
-});
+);
 
 router.get('/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1, 4),
   validationHandler(getProductSchema, 'params'),
   async(req, res, next) => {
     try{
@@ -33,6 +41,8 @@ router.get('/:id',
 );
 
 router.post('/',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
   validationHandler(createProductSchema, 'body'),
   async(req, res, next) => {
     try{
@@ -49,6 +59,8 @@ router.post('/',
 );
 
 router.patch('/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
   validationHandler(getProductSchema, 'params'),
   validationHandler(updateProductSchema, 'body'),
   async(req, res, next) => {
@@ -67,6 +79,8 @@ router.patch('/:id',
 )
 
 router.delete('/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
   validationHandler(getProductSchema, 'params'),
   async(req, res, next) => {
     try{

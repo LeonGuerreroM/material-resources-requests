@@ -6,20 +6,28 @@ const {
   createUserSchema,
   updateUserSchema
 } = require('../utils/schemas/userSchema');
+const passport = require('passport');
+const checkRoles = require('../utils/middlewares/authHandler');
 
 const router = express.Router();
 const service = new UserServices()
 
-router.get('/', async(req, res, next) => {
+router.get('/',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
+  async(req, res, next) => {
     try{
       const users = await service.find(req.query);
       res.json(users);
     } catch(error) {
       next(error);
     }
-});
+  }
+);
 
 router.get('/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1, 2, 3, 4),
   validationHandler(getUserSchema, 'params'),
   async(req, res, next) => {
     try{
@@ -33,6 +41,8 @@ router.get('/:id',
 );
 
 router.post('/',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
   validationHandler(createUserSchema, 'body'),
   async(req, res, next) => {
     try{
@@ -49,6 +59,8 @@ router.post('/',
 );
 
 router.patch('/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(2, 3, 4),
   validationHandler(getUserSchema, 'params'),
   validationHandler(updateUserSchema, 'body'),
   async(req, res, next) => {
@@ -67,6 +79,8 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(1),
   validationHandler(getUserSchema, 'params'),
   async(req, res, next) => {
     try{
