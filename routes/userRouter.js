@@ -58,16 +58,17 @@ router.post('/',
   }
 );
 
-router.patch('/:id',
+router.patch('/',
   passport.authenticate('jwt', {session:false}),
   checkRoles(2, 3, 4),
-  validationHandler(getUserSchema, 'params'),
+  //validationHandler(getUserSchema, 'params'),
   validationHandler(updateUserSchema, 'body'),
   async(req, res, next) => {
     try{
-      const { id } = req.params;
+      //const { id } = req.params;
+      const subCont = req.user;
       const body = req.body;
-      const user = await service.update(id, body);
+      const user = await service.update(subCont.sub, body);
       res.json( {
         message: 'user updated',
         data: user
