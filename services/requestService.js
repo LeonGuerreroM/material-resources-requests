@@ -38,6 +38,15 @@ class RequestServices{
     return element;
   }
 
+  async findByUser(userId){
+    const options = {
+      include: ['product'],
+      where: { userId }
+    }
+    const elements = await models.Request.findAll(options);
+    return elements;
+  }
+
   async create(data){
     const newElement = await models.Request.create(data);
     return newElement;

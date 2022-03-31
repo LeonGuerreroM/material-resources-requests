@@ -29,6 +29,20 @@ router.get('/',
   }
 );
 
+router.get('/my-requests',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(4),
+  async (req, res, next) => {
+    try{
+      const user = req.user;
+      const elements = await service.findByUser(user.sub);
+      res.json(elements);
+    }catch(error){
+      next(error);
+    }
+  }
+);
+
 router.get('/:id',
   passport.authenticate('jwt', {session:false}),
   checkRoles(2, 3, 4),
