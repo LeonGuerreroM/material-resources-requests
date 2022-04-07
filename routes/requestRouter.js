@@ -155,7 +155,7 @@ router.delete('/:id',
       const user = req.user; //asi obtienes el jwt del header desde las rutas para trabajar con el
       const userId = user.sub;
       const confirmation = await service.delete(id, userId);
-      res.json({
+      res.status(204).json({
         message: thing + ' deleted',
         status: confirmation
       })

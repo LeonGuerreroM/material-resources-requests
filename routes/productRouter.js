@@ -48,7 +48,7 @@ router.post('/',
     try{
       const body = req.body;
       const newProduct = await service.create(body);
-      res.json({
+      res.status(201).json({
         message: 'product created',
         data: newProduct
       })
@@ -86,7 +86,7 @@ router.delete('/:id',
     try{
       const { id } = req.params;
       const confirmation = await service.delete(id);
-      res.json({
+      res.status(204).json({
         message: "product deleted",
         data: confirmation
       })
