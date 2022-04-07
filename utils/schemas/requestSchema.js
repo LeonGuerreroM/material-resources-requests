@@ -5,9 +5,7 @@ const productId = Joi.number().integer();
 const detail = Joi.string();
 const amount = Joi.number().integer();
 const validated = Joi.boolean();
-const validatedAt = Joi.date();
 const processed = Joi.boolean();
-const processedAt = Joi.date();
 const note = Joi.string();
 
 const status = Joi.number().integer();
@@ -22,11 +20,12 @@ const createRequestSchema = Joi.object({
   amount: amount.required(),
 });
 
-const validateOrProcessSchema = Joi.object({
-  validated: validated,
-  validatedAt: validatedAt,
-  processed: processed,
-  processedAt: processedAt,
+const validateSchema = Joi.object({
+  validated: validated.required(),
+});
+
+const processSchema = Joi.object({
+  processed: processed.required(),
   note: note
 });
 
@@ -40,4 +39,4 @@ const queryRequestSchema = Joi.object({
   status: status
 });
 
-module.exports = { getRequestSchema, createRequestSchema, updateRequestSchema, queryRequestSchema, validateOrProcessSchema };
+module.exports = { getRequestSchema, createRequestSchema, updateRequestSchema, queryRequestSchema, validateSchema, processSchema };

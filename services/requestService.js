@@ -22,6 +22,8 @@ class RequestServices{
       options.where.processed = { [Op.eq]: true };
     }else if(status == 4){
       options.where.processed = { [Op.eq]: false };
+    }else if(status == 5){
+      options.where.processed = { [Op.eq]: null };
     }
 
     const info = await models.Request.findAll(options);
@@ -38,11 +40,24 @@ class RequestServices{
     return element;
   }
 
-  async findByUser(userId){
+  async findByUser(userId, status){
     const options = {
       include: ['product'],
       where: { userId }
     }
+
+    if(status == 1){
+      options.where.validated = { [Op.eq]: true };
+    }else if(status == 2){
+      options.where.validated = { [Op.eq]: false };
+    }else if(status == 3){
+      options.where.processed = { [Op.eq]: true };
+    }else if(status == 4){
+      options.where.processed = { [Op.eq]: false };
+    }else if(status == 5){
+      options.where.processed = { [Op.eq]: null };
+    }
+
     const elements = await models.Request.findAll(options);
     return elements;
   }
@@ -61,22 +76,31 @@ class RequestServices{
     return updatedElement;
   }
 
-  async validateOrProcess(id, data){
+  async validate(id, data){
     const element = await this.findOne(id);
     const prevValidationStatus = element.validated;
-    if(data.validated){
-      const dt = new Date();
-      data.validatedAt = dt
+    if(data.validated && prevValidationStatus!=true){
+      const registeredDate = new Date();
+      data.validatedAt = registeredDate
     }
     if(data.validated==false && prevValidationStatus==true){
       data.validatedAt = null;
     }
-    if(data.processed != null){
-      const dt = new Date();
-      data.processedAt = dt
-    }
+
     const updatedElement = await element.update(data);
     return updatedElement;
+  }
+
+  async process(id, data){
+    const element = await this.findOne(id);
+    const preProcessedStatus = element.processed;
+    if(data.processed != null && preProcessedStatus!=data.processed){
+      const registeredDate = new Date();
+      data.processedAt = registeredDate;
+    }
+
+    const updateElement = await element.update(data);
+    return updateElement;
   }
 
   async delete(id, userId){

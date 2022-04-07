@@ -6,7 +6,8 @@ const {
   createRequestSchema,
   updateRequestSchema,
   queryRequestSchema,
-  validateOrProcessSchema
+  validateSchema,
+  processSchema
 } = require('../utils/schemas/requestSchema');
 const passport = require('passport');
 const checkRoles = require('../utils/middlewares/authHandler');
@@ -37,7 +38,8 @@ router.get('/my-requests',
   async (req, res, next) => {
     try{
       const user = req.user;
-      const elements = await service.findByUser(user.sub);
+      const { status } = req.query;
+      const elements = await service.findByUser(user.sub, status);
       res.json(elements);
     }catch(error){
       next(error);
@@ -70,9 +72,10 @@ router.post('/',
       const user = req.user;
       body.userId = user.sub;
       const newElement = await service.create(body);
-      res.json({
+      res.status(201).json({
         message: thing + ' created',
-        data: newElement
+        data: newElement,
+        status: 201
       })
     }catch(error){
       next(error);
@@ -80,16 +83,36 @@ router.post('/',
   }
 );
 
-router.patch('/validateOrProcess/:id',
+router.patch('/process/:id',
   passport.authenticate('jwt', {session:false}),
-  checkRoles(2, 3),
+  checkRoles(2),
   validationHandler(getRequestSchema, 'params'),
-  validationHandler(validateOrProcessSchema, 'body'),
+  validationHandler(processSchema, 'body'),
   async(req, res, next) => {
     try{
       const { id } = req.params;
       const body = req.body;
-      const updatedElement = await service.validateOrProcess(id, body);
+      const updatedElement = await service.process(id, body);
+      res.json({
+        message: thing + ' updated',
+        data: updatedElement
+      })
+    }catch(error){
+      next(error);
+    }
+  }
+);
+
+router.patch('/validate/:id',
+  passport.authenticate('jwt', {session:false}),
+  checkRoles(3),
+  validationHandler(getRequestSchema, 'params'),
+  validationHandler(validateSchema, 'body'),
+  async(req, res, next) => {
+    try{
+      const { id } = req.params;
+      const body = req.body;
+      const updatedElement = await service.validate(id, body);
       res.json({
         message: thing + ' updated',
         data: updatedElement
@@ -129,7 +152,7 @@ router.delete('/:id',
   async(req, res, next) => {
     try{
       const { id } = req.params;
-      const user = req.user;
+      const user = req.user; //asi obtienes el jwt del header desde las rutas para trabajar con el
       const userId = user.sub;
       const confirmation = await service.delete(id, userId);
       res.json({
