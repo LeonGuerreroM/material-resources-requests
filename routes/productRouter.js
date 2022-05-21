@@ -13,7 +13,7 @@ const router = express.Router();
 const service = new ProductServices();
 
   /**
-   * @module productsRoutes
+   * @module ProductsRoutes
    */
 
   /**
