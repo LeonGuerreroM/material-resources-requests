@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      productRouter.js - Documentation
+      routes/userRouter.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -81,7 +81,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        productRouter.js
+        routes/userRouter.js
       </h1>
     
 
@@ -91,32 +91,32 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>const express = require('express');
-const ProductServices = require('../services/productService');
+const UserServices = require('../services/userService.js');
 const validationHandler =  require('../utils/middlewares/validationHandler');
 const {
-  getProductSchema,
-  createProductSchema,
-  updateProductSchema
-} = require('../utils/schemas/productSchema');
+  getUserSchema,
+  createUserSchema,
+  updateUserSchema
+} = require('../utils/schemas/userSchema');
 const passport = require('passport');
 const checkRoles = require('../utils/middlewares/authHandler');
 
 const router = express.Router();
-const service = new ProductServices();
+const service = new UserServices()
 
   /**
-   * @module ProductsRoutes
+   * @module UsersRoutes
    */
 
   /**
-   * @name getProducts
-   * @path {GET} /api/v1/products/
+   * @name getUsers
+   * @path {GET} /api/v1/users/
    *
    * @header {String} Authorization Bearer token needed to validate session and privileges (Admin)
    *
-   * @response {Object} products list of every registered product
+   * @response {Object} users list of every registered user
    *
-   * @code {200} correct products list return
+   * @code {200} correct users list return
    * @code {401} in case of unmatched privileges or token absence
    * @code {500} in case of internal errors with the request
    *
@@ -126,59 +126,60 @@ router.get('/',
   checkRoles(1),
   async(req, res, next) => {
     try{
-      const products = await service.find(req.query);
-      res.json(products);
-    }catch(error){
+      const users = await service.find(req.query);
+      res.json(users);
+    } catch(error) {
       next(error);
     }
   }
 );
 
   /**
-   * @name getProduct
-   * @path {GET} /api/v1/products/:id
+   * @name getUser
+   * @path {GET} /api/v1/users/:id
    *
-   * @header {String} Authorization Bearer token needed to validate session and privileges (Admin, Lab)
+   * @header {String} Authorization Bearer token needed to validate session and privileges (Admin, MaterialResources, DepartmentManager, Lab)
    *
-   * @params {Number} id requested product id
+   * @params {String} username requested user related username
    *
-   * @response {Object} product requested product
+   * @response {Object} user requested user
    *
-   * @code {200} correct product return
+   * @code {200} correct user return
    * @code {401} in case of unmatched privileges or token absence
-   * @code {404} in case of not founded product
+   * @code {404} in case of not founded user
    * @code {500} in case of internal errors with the request
    *
    */
-router.get('/:id',
+router.get('/:username',
   passport.authenticate('jwt', {session:false}),
-  checkRoles(1, 4),
-  validationHandler(getProductSchema, 'params'),
+  checkRoles(1, 2, 3, 4),
+  validationHandler(getUserSchema, 'params'),
   async(req, res, next) => {
     try{
-      const { id } = req.params;
-      const product = await service.findOne(id);
-      res.json(product);
-    }catch(error){
-      next(error)
+      const { username } = req.params;
+      const user = await service.findByUsername(username);
+      res.json(user);
+    } catch(error) {
+      next(error);
     }
   }
 );
 
   /**
-   * @name createProduct
-   * @path {POST} /api/v1/products/
+   * @name createUser
+   * @path {POST} /api/v1/users/
    *
    * @header {String} Authorization Bearer token needed to validate session and privileges (Admin)
    *
-   * @body {String} claveCUCoP product CUCoP key related
-   * @body {String} partida product partida related
-   * @body {String} name product name
-   * @body {String} unit measurement unit related
+   * @body {String} username user related username, will be a credential
+   * @body {String} password at least 8 characters length
+   * @body {Number} departmentId related department id
+   * @body {Number} userCategoryId user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)
+   * @body {String} [area] user related area
    *
-   * @response {Object} object.data created product data
+   * @response {Object} object.data created user data
    *
-   * @code {201} in case of product created
+   * @code {201} in case of user created
    * @code {401} in case of unmatched privileges or token absence
    * @code {400} in case of wrong body parameters
    * @code {500} in case of internal errors with the request
@@ -187,92 +188,90 @@ router.get('/:id',
 router.post('/',
   passport.authenticate('jwt', {session:false}),
   checkRoles(1),
-  validationHandler(createProductSchema, 'body'),
+  validationHandler(createUserSchema, 'body'),
   async(req, res, next) => {
     try{
       const body = req.body;
-      const newProduct = await service.create(body);
-      res.status(201).json({
-        message: 'product created',
-        data: newProduct
-      })
-    }catch(error){
+      const newUser = await service.create(body);
+      res.status(201).json( {
+        message: 'user created',
+        data: newUser
+      });
+    } catch(error) {
       next(error);
     }
   }
 );
 
-/**
-   * @name updateProduct
-   * @path {PATCH} /api/v1/products/:id
+  /**
+   * @name updateUser
+   * @path {PATCH} /api/v1/user/
    *
-   * @header {String} Authorization Bearer token needed to validate session and privileges (Admin)
+   * @header {String} Authorization Bearer token needed to validate session and privileges (MaterialResources, DepartmentManager, Lab). Used also to obtain the user id.
    *
-   * @params {Number} id requested product id
+   * @body {String} [username] user related username, remember is a credential
+   * @body {String} [password] at least 8 characters length
+   * @body {Number} [departmentId] related department id
+   * @body {Number} [userCategoryId] user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)
+   * @body {String} [area] user related area
    *
-   * @body {String} [claveCUCoP] product CUCoP key related
-   * @body {String} [partida] product partida related
-   * @body {String} [name] product name
-   * @body {String} [unit] measurement unit related
+   * @response {Object} object.data updated user data
    *
-   * @response {Object} object.data updated product data
-   *
-   * @code {200} in case of product updated
+   * @code {200} in case of user updated
    * @code {401} in case of unmatched privileges or token absence
    * @code {400} in case of wrong body parameters
-   * @code {404} in case of not founded product
+   * @code {404} in case of not founded user
    * @code {500} in case of internal errors with the request
    *
    */
-router.patch('/:id',
+router.patch('/',
   passport.authenticate('jwt', {session:false}),
-  checkRoles(1),
-  validationHandler(getProductSchema, 'params'),
-  validationHandler(updateProductSchema, 'body'),
+  checkRoles(2, 3, 4),
+  validationHandler(updateUserSchema, 'body'),
   async(req, res, next) => {
     try{
-      const { id } = req.params;
+      const subCont = req.user;
       const body = req.body;
-      const updatedProduct = await service.update(id, body);
-      res.json({
-        message: 'product updated',
-        data: updatedProduct
-      })
-    }catch(error){
+      const user = await service.update(subCont.sub, body);
+      res.json( {
+        message: 'user updated',
+        data: user
+      });
+    } catch(error) {
       next(error);
     }
   }
-)
+);
 
-/**
-   * @name deleteProduct
-   * @path {DELETE} /api/v1/products/:id
+  /**
+   * @name deleteUser
+   * @path {DELETE} /api/v1/user/:id
    *
    * @header {String} Authorization Bearer token needed to validate session and privileges (Admin)
    *
-   * @params {Number} id requested product id
+   * @params {Number} id requested user id
    *
    * @response {Boolean} object.confirmation done deletion boolean confirmation
    *
-   * @code {200} in case of product deleted
+   * @code {200} in case of user deleted
    * @code {401} in case of unmatched privileges or token absence
-   * @code {404} in case of not founded product
+   * @code {404} in case of not founded user
    * @code {500} in case of internal errors with the request
    *
    */
 router.delete('/:id',
   passport.authenticate('jwt', {session:false}),
   checkRoles(1),
-  validationHandler(getProductSchema, 'params'),
+  validationHandler(getUserSchema, 'params'),
   async(req, res, next) => {
     try{
       const { id } = req.params;
       const confirmation = await service.delete(id);
-      res.status(204).json({
-        message: "product deleted",
+      res.status(204).json( {
+        message: 'user deleted',
         data: confirmation
-      })
-    }catch(error){
+      });
+    } catch(error) {
       next(error);
     }
   }

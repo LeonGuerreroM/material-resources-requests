@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      authenticationRoutes - Documentation
+      AuthenticationRoutes - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -73,13 +73,13 @@
 
     
 
-    <h3>Modules</h3><ul><li id="authenticationRoutes-nav"><a href="module-authenticationRoutes.html">authenticationRoutes</a></li><li id="productsRoutes-nav"><a href="module-productsRoutes.html">productsRoutes</a></li><li id="requestsRoutes-nav"><a href="module-requestsRoutes.html">requestsRoutes</a></li><li id="usersRoutes-nav"><a href="module-usersRoutes.html">usersRoutes</a></li></ul>
+    <h3>Modules</h3><ul><li id="AuthenticationRoutes-nav"><a href="module-AuthenticationRoutes.html">AuthenticationRoutes</a></li><li id="ProductsRoutes-nav"><a href="module-ProductsRoutes.html">ProductsRoutes</a></li><li id="RequestsRoutes-nav"><a href="module-RequestsRoutes.html">RequestsRoutes</a></li><li id="UsersRoutes-nav"><a href="module-UsersRoutes.html">UsersRoutes</a></li></ul>
   </nav>
 
   <div id="main">
     
       <h1 class="page-title">
-        authenticationRoutes
+        AuthenticationRoutes
       </h1>
     
 
@@ -262,7 +262,553 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="authRouter.js.html">authRouter.js</a>, <a href="authRouter.js.html#line12">line 12</a>
+          <a href="routes_authRouter.js.html">routes/authRouter.js</a>, <a href="routes_authRouter.js.html#line12">line 12</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="login">
+  <span class="type-signature">(route) </span>login<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">/api/v1/auth/login</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">user's registered username</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last"></td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">undefined</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last"></td>
+          </tr><tr>
+            <td class="name">object.user</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">authenticated user</td>
+          </tr><tr>
+            <td class="name">object.token</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">bearer token needed to access every function related to the user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">if the credentials were correct</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of wrong credentials</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_authRouter.js.html">routes/authRouter.js</a>, <a href="routes_authRouter.js.html#line12">line 12</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+    
+
+    
+
+    
+
+    
+  </article>
+</section>
+
+
+
+
+<section>
+  <header>
+    
+      
+  </header>
+
+  <article>
+    <div class="container-overview">
+      
+        
+
+        
+      
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+
+<h4 class="name" id="login">
+  <span class="type-signature">(route) </span>login<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">/api/v1/auth/login</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">user's registered username</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last"></td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">undefined</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last"></td>
+          </tr><tr>
+            <td class="name">object.user</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">authenticated user</td>
+          </tr><tr>
+            <td class="name">object.token</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">bearer token needed to access every function related to the user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">if the credentials were correct</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of wrong credentials</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_authRouter.js.html">routes/authRouter.js</a>, <a href="routes_authRouter.js.html#line12">line 12</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="login">
+  <span class="type-signature">(route) </span>login<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">/api/v1/auth/login</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">user's registered username</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last"></td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">undefined</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last"></td>
+          </tr><tr>
+            <td class="name">object.user</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">authenticated user</td>
+          </tr><tr>
+            <td class="name">object.token</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">bearer token needed to access every function related to the user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">if the credentials were correct</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of wrong credentials</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_authRouter.js.html">routes/authRouter.js</a>, <a href="routes_authRouter.js.html#line12">line 12</a>
         </li>
       </ul>
     </dd>

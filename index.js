@@ -6,6 +6,11 @@ const { ormErrorHandler, logErrors, errorHandler, boomErrorHandler } = require('
 const app = express();
 const port = process.env.PORT || 3002;
 
+  /**
+   * @file Main page | Application done for managing the material resources requests occurred on a university
+   * @author León Mora Guerrero -LeonGuerreroM-
+   * @see <a href="https://github.com/LeonGuerreroM/material-resources-requests/tree/development" target="-blank">See project code</a>
+   */
 
 app.use(express.json());
 

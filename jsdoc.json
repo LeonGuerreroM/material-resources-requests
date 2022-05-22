@@ -1,7 +1,7 @@
 {
 	"plugins": ["jsdoc-http-plugin"],
 	"source": {
-        "include": ["routes"],
+        "include": ["routes", "."],
         "includePattern": ".js$",
         "excludePattern": "(node_modules|docs)"
 	},

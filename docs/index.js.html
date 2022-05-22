@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Home - Documentation
+      index.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -49,14 +51,14 @@
 
   <div class="top-nav-wrapper">
     <ul>
-      <li  class="active" >
+      <li >
         <a href="index.html">
           
-          
-            <svg fill="#0095dd" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
+          
           
         </a>
       </li>
@@ -78,137 +80,65 @@
 
   <div id="main">
     
+      <h1 class="page-title">
+        index.js
+      </h1>
+    
 
     
       
-
-
-
-    
-
-      
-
-
-
-    
-
 
 <section>
-  <header>
-    
-      <h2>
-        
-        index.js
-        
-      </h2>
-
-      
-    
-  </header>
-
   <article>
-    <div class="container-overview">
-      
-        
-            <div class="description">
-              Main page | Application done for managing the material resources requests occurred on a university
-            </div>
-        
+    <pre class="prettyprint source linenums"><code>const express = require('express');
+const cors = require('cors');
+const routerApi = require('./routes');
+const { ormErrorHandler, logErrors, errorHandler, boomErrorHandler } = require('./utils/middlewares/errorHandlers');
 
-        
+const app = express();
+const port = process.env.PORT || 3002;
 
-<dl class="details">
+  /**
+   * @file Main page | Application done for managing the material resources requests occurred on a university
+   * @author León Mora Guerrero -LeonGuerreroM-
+   * @see &lt;a href="https://github.com/LeonGuerreroM/material-resources-requests/tree/development" target="-blank">See project code&lt;/a>
+   */
 
-  
+app.use(express.json());
 
-  
+const whitelist = ['http://localhost:8080', 'http://myapp.com'];
+const options = {
+  origin: (origin, callback) => {
+    if(whitelist.includes(origin) || !origin){
+      callback(null, true);
+    }else{
+      callback(new Error('Access denied'));
+    }
+  }
+}
+app.use(cors(options));
 
-  
+require('./utils/auth');
 
-  
+app.get('/', (req, res) => {
+  res.send("Solicitud de recursos materiales");
+})
 
-  
+routerApi(app);
 
-  
+app.use(logErrors);
+app.use(ormErrorHandler);
+app.use(boomErrorHandler);
+app.use(errorHandler);
 
-  
-
-  
-
-  
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-      <ul>
-        
-          <li>
-            León Mora Guerrero -LeonGuerreroM-
-          </li>
-        
-      </ul>
-    </dd>
-  
-
-  
-
-  
-
-  
-
-  
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source">
-      <ul class="dummy">
-        <li>
-          <a href="index.js.html">index.js</a>, <a href="index.js.html#line9">line 9</a>
-        </li>
-      </ul>
-    </dd>
-  
-
-  
-
-  
-    <dt class="tag-see">See:</dt>
-    <dd class="tag-see">
-      <ul>
-        
-          <li>
-            <a href="https://github.com/LeonGuerreroM/material-resources-requests/tree/development" target="-blank">See project code</a>
-          </li>
-        
-      </ul>
-    </dd>
-  
-
-  
-</dl>
-
-
-        
-      
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
+app.listen(port, () =>{
+  console.log("listening on port " + port);
+})
+</code></pre>
   </article>
 </section>
 
-
+    
 
 
   </div>

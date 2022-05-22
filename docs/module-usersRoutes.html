@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      usersRoutes - Documentation
+      UsersRoutes - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -73,13 +73,13 @@
 
     
 
-    <h3>Modules</h3><ul><li id="authenticationRoutes-nav"><a href="module-authenticationRoutes.html">authenticationRoutes</a></li><li id="productsRoutes-nav"><a href="module-productsRoutes.html">productsRoutes</a></li><li id="requestsRoutes-nav"><a href="module-requestsRoutes.html">requestsRoutes</a></li><li id="usersRoutes-nav"><a href="module-usersRoutes.html">usersRoutes</a></li></ul>
+    <h3>Modules</h3><ul><li id="AuthenticationRoutes-nav"><a href="module-AuthenticationRoutes.html">AuthenticationRoutes</a></li><li id="ProductsRoutes-nav"><a href="module-ProductsRoutes.html">ProductsRoutes</a></li><li id="RequestsRoutes-nav"><a href="module-RequestsRoutes.html">RequestsRoutes</a></li><li id="UsersRoutes-nav"><a href="module-UsersRoutes.html">UsersRoutes</a></li></ul>
   </nav>
 
   <div id="main">
     
       <h1 class="page-title">
-        usersRoutes
+        UsersRoutes
       </h1>
     
 
@@ -287,7 +287,200 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="userRouter.js.html">userRouter.js</a>, <a href="userRouter.js.html#line76">line 76</a>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line76">line 76</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="createUser">
+  <span class="type-signature">(route) </span>createUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">/api/v1/users/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Attributes</th>
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">user related username, will be a credential</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">at least 8 characters length</td>
+          </tr><tr>
+            <td class="name">departmentId</td>
+            <td class="type">Number</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">related department id</td>
+          </tr><tr>
+            <td class="name">userCategoryId</td>
+            <td class="type">Number</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)</td>
+          </tr><tr>
+            <td class="name">area</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related area</td>
+          </tr>
+          </table>
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.data</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">created user data</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">201</td>
+            
+            
+            <td class="description last">in case of user created</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line76">line 76</a>
         </li>
       </ul>
     </dd>
@@ -456,7 +649,176 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="userRouter.js.html">userRouter.js</a>, <a href="userRouter.js.html#line154">line 154</a>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line154">line 154</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="deleteUser">
+  <span class="type-signature">(route) </span>deleteUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">DELETE</td>
+                            <td class="name last">/api/v1/user/:id</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">id</td>
+            <td class="type">Number</td>
+            
+            
+            <td class="description last">requested user id</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.confirmation</td>
+            <td class="type">Boolean</td>
+            
+            
+            <td class="description last">done deletion boolean confirmation</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">in case of user deleted</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line154">line 154</a>
         </li>
       </ul>
     </dd>
@@ -625,7 +987,176 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="userRouter.js.html">userRouter.js</a>, <a href="userRouter.js.html#line45">line 45</a>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line45">line 45</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="getUser">
+  <span class="type-signature">(route) </span>getUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">/api/v1/users/:id</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin, MaterialResources, DepartmentManager, Lab)</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">requested user related username</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">user</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">requested user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">correct user return</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line45">line 45</a>
         </li>
       </ul>
     </dd>
@@ -769,7 +1300,151 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="userRouter.js.html">userRouter.js</a>, <a href="userRouter.js.html#line19">line 19</a>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line19">line 19</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="getUsers">
+  <span class="type-signature">(route) </span>getUsers<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">/api/v1/users/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">users</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">list of every registered user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">correct users list return</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line19">line 19</a>
         </li>
       </ul>
     </dd>
@@ -968,7 +1643,1996 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="userRouter.js.html">userRouter.js</a>, <a href="userRouter.js.html#line114">line 114</a>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line114">line 114</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="updateUser">
+  <span class="type-signature">(route) </span>updateUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">PATCH</td>
+                            <td class="name last">/api/v1/user/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Attributes</th>
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related username, remember is a credential</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">at least 8 characters length</td>
+          </tr><tr>
+            <td class="name">departmentId</td>
+            <td class="type">Number</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">related department id</td>
+          </tr><tr>
+            <td class="name">userCategoryId</td>
+            <td class="type">Number</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)</td>
+          </tr><tr>
+            <td class="name">area</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related area</td>
+          </tr>
+          </table>
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (MaterialResources, DepartmentManager, Lab). Used also to obtain the user id.</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.data</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">updated user data</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">in case of user updated</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line114">line 114</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+    
+
+    
+
+    
+
+    
+  </article>
+</section>
+
+
+
+
+<section>
+  <header>
+    
+      
+  </header>
+
+  <article>
+    <div class="container-overview">
+      
+        
+
+        
+      
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+
+<h4 class="name" id="createUser">
+  <span class="type-signature">(route) </span>createUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">/api/v1/users/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Attributes</th>
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">user related username, will be a credential</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">at least 8 characters length</td>
+          </tr><tr>
+            <td class="name">departmentId</td>
+            <td class="type">Number</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">related department id</td>
+          </tr><tr>
+            <td class="name">userCategoryId</td>
+            <td class="type">Number</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)</td>
+          </tr><tr>
+            <td class="name">area</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related area</td>
+          </tr>
+          </table>
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.data</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">created user data</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">201</td>
+            
+            
+            <td class="description last">in case of user created</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line76">line 76</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="createUser">
+  <span class="type-signature">(route) </span>createUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">POST</td>
+                            <td class="name last">/api/v1/users/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Attributes</th>
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">user related username, will be a credential</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">at least 8 characters length</td>
+          </tr><tr>
+            <td class="name">departmentId</td>
+            <td class="type">Number</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">related department id</td>
+          </tr><tr>
+            <td class="name">userCategoryId</td>
+            <td class="type">Number</td>
+            <td class="attributes"></td>
+            
+            <td class="description last">user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)</td>
+          </tr><tr>
+            <td class="name">area</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related area</td>
+          </tr>
+          </table>
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.data</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">created user data</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">201</td>
+            
+            
+            <td class="description last">in case of user created</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line76">line 76</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="deleteUser">
+  <span class="type-signature">(route) </span>deleteUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">DELETE</td>
+                            <td class="name last">/api/v1/user/:id</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">id</td>
+            <td class="type">Number</td>
+            
+            
+            <td class="description last">requested user id</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.confirmation</td>
+            <td class="type">Boolean</td>
+            
+            
+            <td class="description last">done deletion boolean confirmation</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">in case of user deleted</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line154">line 154</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="deleteUser">
+  <span class="type-signature">(route) </span>deleteUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">DELETE</td>
+                            <td class="name last">/api/v1/user/:id</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">id</td>
+            <td class="type">Number</td>
+            
+            
+            <td class="description last">requested user id</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.confirmation</td>
+            <td class="type">Boolean</td>
+            
+            
+            <td class="description last">done deletion boolean confirmation</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">in case of user deleted</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line154">line 154</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="getUser">
+  <span class="type-signature">(route) </span>getUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">/api/v1/users/:id</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin, MaterialResources, DepartmentManager, Lab)</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">requested user related username</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">user</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">requested user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">correct user return</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line45">line 45</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="getUser">
+  <span class="type-signature">(route) </span>getUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">/api/v1/users/:id</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin, MaterialResources, DepartmentManager, Lab)</td>
+          </tr>
+          </table>
+                            <h5>Route Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">requested user related username</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">user</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">requested user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">correct user return</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line45">line 45</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="getUsers">
+  <span class="type-signature">(route) </span>getUsers<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">/api/v1/users/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">users</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">list of every registered user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">correct users list return</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line19">line 19</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="getUsers">
+  <span class="type-signature">(route) </span>getUsers<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">GET</td>
+                            <td class="name last">/api/v1/users/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (Admin)</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">users</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">list of every registered user</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">correct users list return</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line19">line 19</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="updateUser">
+  <span class="type-signature">(route) </span>updateUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">PATCH</td>
+                            <td class="name last">/api/v1/user/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Attributes</th>
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related username, remember is a credential</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">at least 8 characters length</td>
+          </tr><tr>
+            <td class="name">departmentId</td>
+            <td class="type">Number</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">related department id</td>
+          </tr><tr>
+            <td class="name">userCategoryId</td>
+            <td class="type">Number</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)</td>
+          </tr><tr>
+            <td class="name">area</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related area</td>
+          </tr>
+          </table>
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (MaterialResources, DepartmentManager, Lab). Used also to obtain the user id.</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.data</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">updated user data</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">in case of user updated</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line114">line 114</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+          
+        
+            
+
+<h4 class="name" id="updateUser">
+  <span class="type-signature">(route) </span>updateUser<span class="type-signature"></span>
+</h4>
+
+
+
+
+  <div class="description">
+    <h5>Route:</h5>
+                            <table class="params">
+                            <thead><tr><th>Method</th><th class="last">Path</th></tr></thead>
+                            <tr>
+                            <td class="type">PATCH</td>
+                            <td class="name last">/api/v1/user/</td>
+                            </tr>
+                            </table>
+                            
+                            <h5>Body Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Attributes</th>
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">username</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related username, remember is a credential</td>
+          </tr><tr>
+            <td class="name">password</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">at least 8 characters length</td>
+          </tr><tr>
+            <td class="name">departmentId</td>
+            <td class="type">Number</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">related department id</td>
+          </tr><tr>
+            <td class="name">userCategoryId</td>
+            <td class="type">Number</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user's category (1-Admin 2-MaterialResources 3-DepartmentManager 4-Lab)</td>
+          </tr><tr>
+            <td class="name">area</td>
+            <td class="type">String</td>
+            <td class="attributes">optional</td>
+            
+            <td class="description last">user related area</td>
+          </tr>
+          </table>
+                            <h5>Header Parameters:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">Authorization</td>
+            <td class="type">String</td>
+            
+            
+            <td class="description last">Bearer token needed to validate session and privileges (MaterialResources, DepartmentManager, Lab). Used also to obtain the user id.</td>
+          </tr>
+          </table>
+                            <h5>Response:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            <td class="name">object.data</td>
+            <td class="type">Object</td>
+            
+            
+            <td class="description last">updated user data</td>
+          </tr>
+          </table>
+                            <h5>Response Code:</h5>
+          <table class="params">
+            <thead>
+              <tr>
+                
+                <th>Type</th>
+                
+                
+                <th class="last">Description</th>
+              </tr>
+            </thead>
+            <tr>
+            
+            <td class="type">200</td>
+            
+            
+            <td class="description last">in case of user updated</td>
+          </tr><tr>
+            
+            <td class="type">401</td>
+            
+            
+            <td class="description last">in case of unmatched privileges or token absence</td>
+          </tr><tr>
+            
+            <td class="type">400</td>
+            
+            
+            <td class="description last">in case of wrong body parameters</td>
+          </tr><tr>
+            
+            <td class="type">404</td>
+            
+            
+            <td class="description last">in case of not founded user</td>
+          </tr><tr>
+            
+            <td class="type">500</td>
+            
+            
+            <td class="description last">in case of internal errors with the request</td>
+          </tr>
+          </table>
+  </div>
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="routes_userRouter.js.html">routes/userRouter.js</a>, <a href="routes_userRouter.js.html#line114">line 114</a>
         </li>
       </ul>
     </dd>
