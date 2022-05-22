@@ -14,7 +14,7 @@ const port = process.env.PORT || 3002;
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:8080', 'http://myapp.com'];
+const whitelist = ['http://localhost:8080', 'https://cosmic-hamster-644022.netlify.app/'];
 const options = {
   origin: (origin, callback) => {
     if(whitelist.includes(origin) || !origin){
