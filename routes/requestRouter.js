@@ -17,7 +17,7 @@ const router = express.Router();
 const service = new RequestServices();
 
   /**
-   * @module RequestsRoutes
+   * @module requestsRoutes
    */
 
 const thing = "request";
